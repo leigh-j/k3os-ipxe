@@ -1,0 +1,52 @@
+---
+ssh_authorized_keys:
+  - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKTo4jzGJXTJxs7N471C2qsgZXHeMg4rd5ru1MsvDthh'
+write_files:
+  - encoding: ""
+    content: |-
+      #!/bin/bash
+      echo hi
+    owner: root
+    path: /etc/rc.local
+    permissions: '0755'
+#hostname: myhost
+run_cmd:
+  - "echo run hi && echo bye"
+boot_cmd:
+  - "echo boot hi && echo bye"
+init_cmd:
+  - "echo init hi && echo bye"
+
+k3os:
+  data_sources:
+    - cdrom
+  modules:
+    - kvm
+    - nvme
+  sysctl:
+    kernel.printk: 4 4 1 7
+    kernel.kptr_restrict: 1
+  dns_nameservers:
+    - 8.8.8.8
+    - 1.1.1.1
+  ntp_servers:
+    - 0.us.pool.ntp.org
+    - 1.us.pool.ntp.org
+#  server_url: https://someserver.dev.kvm:6443
+  token: TOKEN_VALUE
+  labels:
+    region: us-west-1
+    somekey: somevalue
+  k3s_args:
+    - server
+    - "--cluster-cidr=10.107.0.0/23"
+    - "--service-cidr=10.107.1.0/23"
+#  k3s_args:
+#    - server
+#    - "--disable-agent"
+#  environment:
+#    http_proxy: http://myserver
+#    https_proxy: http://myserver
+#  taints:
+#    - key1=value1:NoSchedule
+#    - key1=value1:NoExecute

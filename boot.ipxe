@@ -11,7 +11,7 @@ set kernel_loc ${media_root}/k3os-vmlinuz-amd64
 set initrd_loc ${media_root}/k3os-initrd-amd64
 set iso_loc ${media_root}/k3os-amd64.iso
 
-set k3os_args k3os.mode=install k3os.install.silent k3os.install.device=/dev/${root_dev} k3os.install.iso_url=${iso_loc} k3os.install.power_off=true 
+set k3os_args k3os.mode=install k3os.install.silent k3os.install.device=/dev/${root_dev} k3os.install.iso_url=${iso_loc} k3os.install.config_url=${boot_url}/k3os/config.yml k3os.install.power_off=true 
 set kernel_args console=tty1 console=serial loglevel=4 k3os.debug printk.devkmsg=on 
 
 echo boot args
